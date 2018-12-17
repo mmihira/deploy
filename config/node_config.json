@@ -1,0 +1,23 @@
+{
+  "nodes": {
+    "minio" : {
+      "ami": "ami-96666ff5",
+      "security_groups": ["ssh2", "minio", "redisNodes", "minio_ext"],
+      "type": "t2.micro",
+      "tags": { "name": "minio" },
+      "attach_volume": true,
+      "volume": "vol-02b6e03aa9a40d5f3",
+      "volume_mount_point": "/dev/xvdb",
+      "volume_mount_dir": "/data",
+      "ansible_host_groups": [
+        "docker",
+        "global_env",
+        "minio_host",
+        "mount_vol"
+      ],
+      "env_injection": [
+        "INST_NAME=minio"
+      ]
+    }
+  }
+}

@@ -1,0 +1,26 @@
+---
+- name: Make data dir
+  become: true
+  become_user: root
+  shell: "mkdir -p {{nodes[inventory_hostname]['volume_mount_dir']}}"
+
+- name: Make file systems
+  filesystem:
+    fstype: ext4
+    force: no
+    dev: "{{nodes[inventory_hostname]['volume_mount_point']}}"
+
+- name: Mount volumes
+  mount:
+    path: "{{nodes[inventory_hostname]['volume_mount_dir']}}"
+    src: "{{nodes[inventory_hostname]['volume_mount_point']}}"
+    fstype: ext4
+    state: mounted
+
+- name: Empty volume
+  when: nodes[inventory_hostname]['force_volume_clean'] == true
+  become: true
+  become_user: root
+  shell: "rm -rf {{nodes[inventory_hostname]['volume_mount_dir']}}/*; \
+          cd {{nodes[inventory_hostname]['volume_mount_dir']}}; \
+          rm -rf .*;"

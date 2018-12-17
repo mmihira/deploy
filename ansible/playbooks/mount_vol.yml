@@ -1,0 +1,4 @@
+---
+- hosts: 'mount_vol'
+  roles:
+    - ../roles/mount_volume
