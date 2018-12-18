@@ -11,3 +11,4 @@ python3 -m virtualenv ./.VENV
 (source ./.VENV/bin/activate; pip3 install paramiko)
 (source ./.VENV/bin/activate; pip3 install boto)
 (source ./.VENV/bin/activate; pip3 install configparser)
+(source ./.VENV/bin/activate; pip3 install ansible)

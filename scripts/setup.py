@@ -59,7 +59,7 @@ f.write('\n####################################################################\
 f.write('\n####################################################################')
 f.write('\n# These env variables can be set')
 f.write('\n# Location of the private key to login to the nectar servers')
-f.write('\nexport {:}_PRIVATE_KEY_FILE="{:}"'.format(project_prefix, path_to_aws_cred_file))
+f.write('\nexport {:}_PRIVATE_KEY_FILE="{:}"'.format(project_prefix, path_to_priv_key_file))
 f.write('\n# The name given to the private key pair on nectar')
 f.write('\nexport {:}_KEY_PAIR_NAME="{:}"'.format(project_prefix, ec2_priv_key_name))
 f.write('\n# Location of AWS account credentials')
