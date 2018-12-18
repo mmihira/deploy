@@ -18,7 +18,7 @@ git submodule add https://github.com/mmihira/deploy deploy
 Install python3 for your system as well as pip3 <br>
 Install virtualenv 
 ```bash
-  pip3 install virtualenv pip3
+  pip3 install virtualenv
 ```
 
 
