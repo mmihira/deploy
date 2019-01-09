@@ -12,3 +12,5 @@ python3 -m virtualenv ./.VENV
 (source ./.VENV/bin/activate; pip3 install boto)
 (source ./.VENV/bin/activate; pip3 install configparser)
 (source ./.VENV/bin/activate; pip3 install ansible)
+
+python3 ./scripts/setup.py -config ./.setup_config.json

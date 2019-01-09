@@ -1,26 +1,28 @@
 #!python3
 from pathlib import Path
+import json
 import os
 import stat
+import argparse
 
-project_prefix = input("Project prefix : ")
-project_dir_name = input("Project dir name: ")
-ec2_priv_key_name = input("EC2 private key name: ")
+parser = argparse.ArgumentParser(description='Ec2 deployment')
+parser.add_argument(
+    '-config',
+    type=str,
+    default='setup_config.json',
+    help='Setup config file path'
+)
 
-path_to_priv_key_file = Path(input("Path to private key file: "))
-while not path_to_priv_key_file.exists():
-    print("Path {:} does not exist. Enter a valid path".format(path_to_priv_key_file))
-    path_to_priv_key_file = Path(input("Path to private key file: "))
+args = parser.parse_args()
+f = open(args.config, 'r')
+config = json.loads(f.read())
 
-path_to_aws_cred_file = Path(input("Path to amazon credentials file: "))
-while not path_to_aws_cred_file.exists():
-    print("Path {:} does not exist. Enter a valid path".format(path_to_aws_cred_file))
-    path_to_aws_cred_file = Path(input("Path to amazon credentials file: "))
-
-path_to_ansible_vault_password_file = Path(input("Path to ansible vault password file: "))
-while not path_to_ansible_vault_password_file.exists():
-    print("Path {:} does not exist. Enter a valid path".format(path_to_ansible_vault_password_file))
-    path_to_ansible_vault_password_file = Path(input("Path to ansible vault password file: "))
+project_prefix = config['project_prefix']
+project_dir_name = config['project_dir_name']
+ec2_priv_key_name = config['ec2_priv_key_name']
+path_to_priv_key_file = config['path_to_priv_key_file']
+path_to_aws_cred_file = config['path_to_aws_cred_file']
+path_to_ansible_vault_password_file = config['path_to_ansible_vault_password_file']
 
 print("\n\nConfirm the following: ")
 print('{:40}: {:}'.format("Project prefix", project_prefix))

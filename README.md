@@ -16,27 +16,29 @@ git submodule add https://github.com/mmihira/deploy deploy
 ```
 
 Install python3 for your system as well as pip3 <br>
-Install virtualenv 
+Install virtualenv
 ```bash
   pip3 install virtualenv
 ```
 
+Edit ```.setup_config.json``` and configure it. For example
+like below:
+
+```json
+{
+  "project_prefix": "project",
+  "project_dir_name": "project",
+  "ec2_priv_key_name": "key",
+  "path_to_priv_key_file": "/home/user/.ssh/project/key.pem",
+  "path_to_aws_cred_file": "/home/user/.ssh/aws_creds.json",
+  "path_to_ansible_vault_password_file": "/home/user/.ssh/project/avKey"
+}
+```
 
 Setup the virutal environment
 ```bash
   ./deploy_setup.sh
 ```
-You will need to provide the following in the interactive setup:
-
-```bash
-  project prefix       : Should be a captial alphabetic project identifier
-  project dir name     : The root directory name of your project
-  EC2 private key name : The ssh private key name you want to use to access your instances
-  path to key file     : Absolute path to the private key file for ec2 ssh access
-  amazon cred file     : Absolute path to the Amazon credential file. Must be a json file with keys access_key and secret_key
-  ansible vault file   : Absolute path to ansible vault password file. Must be text with one line key entry
-```
-
 This will generate a ``` config/config.sh``` file. <br>
 Next sepcify your node configuration. A sample one is in ``` config/node_config.json ```
 For example :
@@ -72,6 +74,6 @@ Next run the deployment
   ./full_deploy.sh
 ```
 
-To come: configure ansible projects 
+To come: configure ansible projects
 
 

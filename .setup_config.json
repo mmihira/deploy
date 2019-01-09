@@ -1,0 +1,8 @@
+{
+  "project_prefix": "PROJECT",
+  "project_dir_name": "project",
+  "ec2_priv_key_name": "btc_key",
+  "path_to_priv_key_file": "/home/user/.ssh/project/btc_key.pem",
+  "path_to_aws_cred_file": "/home/user/.ssh/aws_creds.json",
+  "path_to_ansible_vault_password_file": "/home/user/.ssh/project/avKey"
+}
