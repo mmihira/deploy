@@ -59,14 +59,25 @@ class Ec2:
         to_create_nodes = dict(missing_nodes_dict)
         for name,node_json in to_create_nodes.items():
             print("Creating {} ...".format(name))
-            node_json['reservation'] = self.conn.run_instances(
-                node_json['ami'],
-                min_count=1,
-                max_count=1,
-                key_name=os.environ[ "{}_KEY_PAIR_NAME".format(self.proj_prefix) ],
-                instance_type=node_json['type'],
-                security_groups=node_json['security_groups']
-            )
+            if os.environ['EC2_PROVIDER'] == 'AWS':
+                node_json['reservation'] = self.conn.run_instances(
+                    node_json['ami'],
+                    min_count=1,
+                    max_count=1,
+                    key_name=os.environ[ "{}_KEY_PAIR_NAME".format(self.proj_prefix) ],
+                    instance_type=node_json['type'],
+                    security_groups=node_json['security_groups']
+                )
+            else :
+                node_json['reservation'] = self.conn.run_instances(
+                    node_json['ami'],
+                    min_count=1,
+                    max_count=1,
+                    key_name=os.environ[ "{}_KEY_PAIR_NAME".format(self.proj_prefix) ],
+                    instance_type=node_json['type'],
+                    placement=node_json['placement'],
+                    security_groups=node_json['security_groups']
+                )
             node_json['inst'] = node_json['reservation'].instances[0]
         self.wait_for_insts_to_start(to_create_nodes)
         self._attach_volumes(to_create_nodes)

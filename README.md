@@ -28,6 +28,7 @@ like below:
 {
   "project_prefix": "project",
   "project_dir_name": "project",
+  "ec2_provider" : "AWS",
   "ec2_priv_key_name": "key",
   "path_to_priv_key_file": "/home/user/.ssh/project/key.pem",
   "path_to_aws_cred_file": "/home/user/.ssh/aws_creds.json",

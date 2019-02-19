@@ -14,3 +14,10 @@ python3 -m virtualenv ./.VENV
 (source ./.VENV/bin/activate; pip3 install ansible)
 
 python3 ./scripts/setup.py -config ./.setup_config.json
+rm -rf .git
+
+# Create the ansible vault file
+source ./config/config.sh
+vault_key_file="$PROJECT_PREFIX""_ANSIBLE_VAULT_PASSWORD_FILE"
+(source ./.VENV/bin/activate; touch ./ansible/secrets/secrets.yml; ansible-vault encrypt ./ansible/secrets/secrets.yml --vault-password-file "${!vault_key_file}")
+

@@ -18,6 +18,7 @@ f = open(args.config, 'r')
 config = json.loads(f.read())
 
 project_prefix = config['project_prefix']
+ec2_provider = config['ec2_provider']
 project_dir_name = config['project_dir_name']
 ec2_priv_key_name = config['ec2_priv_key_name']
 path_to_priv_key_file = config['path_to_priv_key_file']
@@ -25,6 +26,7 @@ path_to_aws_cred_file = config['path_to_aws_cred_file']
 path_to_ansible_vault_password_file = config['path_to_ansible_vault_password_file']
 
 print("\n\nConfirm the following: ")
+print('{:40}: {:}'.format("EC2 provider", ec2_provider))
 print('{:40}: {:}'.format("Project prefix", project_prefix))
 print('{:40}: {:}'.format("Project dir", project_dir_name))
 print('{:40}: {:}'.format("EC2 private key", ec2_priv_key_name))
@@ -46,7 +48,7 @@ f.write('\n# Change this to the parent directory of the git repo')
 f.write('\nexport PARENT_DIRECTORY_OF_REPO="/home/mihira/c"')
 f.write('\nexport PARENT_DIRECTORY_OF_REPO="$PARENT_DIRECTORY_OF_REPO"')
 f.write('\nexport PROJECT_PREFIX="{:}"'.format(project_prefix))
-f.write('\nexport EC2_PROVIDER="AWS"')
+f.write('\nexport EC2_PROVIDER="{:}"'.format(ec2_provider))
 f.write('\n####################################################################\n')
 f.write('\n####################################################################')
 f.write('\n# Do not modify these variables')

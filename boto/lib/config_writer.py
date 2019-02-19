@@ -40,7 +40,10 @@ class ConfigWriter:
         for name, node_info in self.nodes.items():
             inst = node_info['inst']
             f.write("Host {}\n".format(name))
-            f.write("  HostName {}\n".format(inst.ip_address))
+            if os.environ['EC2_PROVIDER'] == 'AWS':
+                f.write("  HostName {}\n".format(inst.ip_address))
+            else:
+                f.write("  HostName {}\n".format(inst.private_ip_address))
             f.write("  User ubuntu\n")
             f.write("  IdentityFile {}\n".format(os.path.expanduser(os.environ["{}_PRIVATE_KEY_FILE".format(self.proj_prefix)])))
             f.write("\n")
