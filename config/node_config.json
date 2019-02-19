@@ -1,10 +1,11 @@
 {
   "nodes": {
     "app" : {
-      "ami": "ami-96666ff5",
-      "security_groups": ["ssh2"],
+      "ami": "ami-e686e12c",
+      "security_groups": ["ssh"],
       "type": "t2.micro",
       "tags": { "name": "app" },
+      "placement": "melbourne-qh2",
       "attach_volume": false,
       "volume": "vol-02b6e03aa9a40d5f3",
       "volume_mount_point": "/dev/xvdb",
