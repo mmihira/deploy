@@ -50,7 +50,7 @@ if [ $? -eq 0 ]; then
                     -i "${!ansible_hosts}" \
                     --ssh-common-args="-F ${!ssh_config}" \
                     --vault-password-file "${!vault_key_file}" \
-                    --extra-vars "@${!vault_file}" \
+                    --extra-vars "${!vault_file}" \
                     --extra-vars "@${!deployed_node_config}"
 fi
 
@@ -63,7 +63,7 @@ if [ $? -eq 0 ]; then
                     -i "${!ansible_hosts}" \
                     --ssh-common-args="-F ${!ssh_config}" \
                     --vault-password-file "${!vault_key_file}" \
-                    --extra-vars "@${!vault_file}"
+                    --extra-vars "${!vault_file}"
 fi
 
 rm -rf ~/.ansible/*
@@ -75,6 +75,6 @@ if [ $? -eq 0 ]; then
                     -i "${!ansible_hosts}" \
                     --ssh-common-args="-F ${!ssh_config}" \
                     --vault-password-file "${!vault_key_file}" \
-                    --extra-vars "@${!vault_file}" \
+                    --extra-vars "${!vault_file}" \
                     --extra-vars "@${!deployed_node_config}"
 fi
